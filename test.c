@@ -8,5 +8,19 @@ int main(void){
     printf("long long..%d\n",(int)sizeof(long long));
     printf("float..%d\n",(int)sizeof(float));
     printf("double..%d\n",(int)sizeof(double));
+
+    printf("ポインタテスト\n");
+
+    //ポインタのテスト
+    int* p = NULL;//int型へのポインタ変数
+    int i;
+    i= 10;
+    //iのアドレスをpに代入
+    p = &i;
+
+    //pの値
+    printf("p = %p\n",p);
+    //iの値
+    printf("&i = %p\n",&i);
     return 0;
 }
