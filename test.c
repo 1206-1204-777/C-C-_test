@@ -22,5 +22,27 @@ int main(void){
     printf("p = %p\n",p);
     //iの値
     printf("&i = %p\n",&i);
+
+    printf("ポインタテスト（追加）\n\n");
+
+    int hoge = 5;
+    int piyo = 10;
+    int *hoge_p; //ポインタ変数
+
+    //変数ごとのアドレス
+    printf("&hoge.. %p\n",(void*)&hoge);
+    printf("&piyo.. %p\n",(void*)&piyo);
+    printf("&hoge_p.. %p\n",(void*)&hoge_p);
+
+    //ポインタ変数への代入
+    hoge_p = &hoge;
+    printf("&hoge_p.. %p\n",(void*)&hoge_p);
+
+    //hoge_pを経由してhogeの値を表示
+    printf("&hoge_p.. %d\n",*hoge_p);
+    
+    *hoge_p = 10;
+    printf("&hoge.. %d\n",hoge);
+    printf("&hoge.. %p\n",(void*)&hoge);
     return 0;
 }
