@@ -1,4 +1,12 @@
 #include <stdio.h>
+void get_xy(double *x_p, double *y_p){
+    printf("x_p.. %p,y_p..%p\n",(void*)x_p,(void*)y_p);
+    printf("&x_p.. %p,&y_p..%p\n",(void*)&x_p,(void*)&y_p);//アドレスの表示
+
+    //引数で渡されたアドレスに値を格納
+    *x_p = 1.0;
+    *y_p = 2.0;
+    }
 int main(void){
     printf("_Bool..%d\n",(int)sizeof(_Bool));
     printf("char..%d\n",(int)sizeof(char));
@@ -59,5 +67,14 @@ int main(void){
     hoge_p_2++;
     printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
     printf("hoge_p_2.. %p\n",(void*)hoge_p_2 + 3);
+
+    printf("\n関数からポインタの受け渡し\n");
+
+    double x;
+    double y;
+
+    printf("&x..%p,&y..%p\n",(void*)&x,(void*)&y);
+    get_xy(&x,&y);
+    printf("x..%f,y..%f\n",x,y);
     return 0; 
 }
