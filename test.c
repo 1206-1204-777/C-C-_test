@@ -44,5 +44,20 @@ int main(void){
     *hoge_p = 10;
     printf("&hoge.. %d\n",hoge);
     printf("&hoge.. %p\n",(void*)&hoge);
-    return 0;
+
+    int a[10];
+    printf("a..%i\n",a[1]);
+
+    printf("\nポインタの移動\n");
+
+    //ポインタの移動
+    int hoge_2;
+    int *hoge_p_2;
+    hoge_p_2 = &hoge_2;
+    printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
+
+    hoge_p_2++;
+    printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
+    printf("hoge_p_2.. %p\n",(void*)hoge_p_2 + 3);
+    return 0; 
 }
