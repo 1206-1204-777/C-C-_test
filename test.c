@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include<ctype.h>
+#include <stdlib.h>
 void get_xy(double *x_p, double *y_p){
     printf("x_p.. %p,y_p..%p\n",(void*)x_p,(void*)y_p);
     printf("&x_p.. %p,&y_p..%p\n",(void*)&x_p,(void*)&y_p);//アドレスの表示
@@ -7,6 +9,28 @@ void get_xy(double *x_p, double *y_p){
     *x_p = 1.0;
     *y_p = 2.0;
     }
+
+int get_word(char *buf,int buf_size,FILE *fp){
+    int len;
+    int ch;
+    /*空白の読み飛ばし */
+    while ((ch = getc(fp)) != EOF && !isalnum(ch));
+
+    if(ch ==EOF)
+    return EOF;
+
+    len = 0;
+    do{
+        buf[len] = ch;
+        len++;
+        if(len >= buf_size){
+            printf("error!\n");
+            exit(1);
+        }
+    }while ((ch = getc(fp)) != EOF && !isalnum(ch));
+    buf[len] = '\0';
+    return len;
+}
 int main(void){
     printf("_Bool..%d\n",(int)sizeof(_Bool));
     printf("char..%d\n",(int)sizeof(char));
@@ -70,11 +94,35 @@ int main(void){
 
     printf("\n関数からポインタの受け渡し\n");
 
+    int *p_2;
     double x;
     double y;
-
+ 
     printf("&x..%p,&y..%p\n",(void*)&x,(void*)&y);
     get_xy(&x,&y);
     printf("x..%f,y..%f\n",x,y);
+
+        printf("\n配列\n");
+        int array[5];
+        // arrayに値を入れる
+        for ( i = 0; i < 5; i++)
+        {
+            array[i] = i;
+        }
+
+        for ( i = 0; i < 5; i++)
+        {
+            printf("%d\n",array[i]);
+        }
+        for (i = 0; i < 5; i++)
+        {
+            printf("%p\n",(void*)&array[i]);
+        }
+    char buf[256];           
+    while ((get_word(buf,256,stdin) != EOF))
+    {
+        printf("<<%s>>\n",buf);
+        }
+    ;
     return 0; 
 }
