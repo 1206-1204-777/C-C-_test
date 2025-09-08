@@ -146,7 +146,7 @@ int main(void){
     }
     //格納された値を表示
         for(i_2 = 0;i_2 < size1; i_2++){
-            printf("\t array[%d].. %d\n",i_2,array[i_2]);
+            printf("array[%d].. %d\n",i_2,array[i_2]);
     }
 
 
