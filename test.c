@@ -83,7 +83,7 @@ int main(void){
     printf("\nポインタの移動\n");
 
     //ポインタの移動
-    int hoge_2;
+   /* int hoge_2;
     int *hoge_p_2;
     hoge_p_2 = &hoge_2;
     printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
@@ -118,11 +118,46 @@ int main(void){
         {
             printf("%p\n",(void*)&array[i]);
         }
-    char buf[256];           
+    char buf[1];           
     while ((get_word(buf,256,stdin) != EOF))
     {
         printf("<<%s>>\n",buf);
         }
-    ;
+    ;*/
+
+    //可変長配列
+    int size1,size2,size3;
+    printf("整数を3つ入力してください\n");
+    scanf("%d %d %d",&size1,&size2,&size3);
+    int array[size1];
+    int array2[size2][size3];
+    //配列に値を格納
+    int i_2;
+    for(i_2 = 0;i_2 < size1; i_2++){
+        array[i_2] = i_2;
+    }
+    int j;
+     for(i_2 = 0;i_2 < size2; i_2++){
+        for (int j = 0; j< size3; j++)
+        {
+            array2[i_2][j] = i_2 *size3 + j;
+        }
+        
+    }
+    //格納された値を表示
+        for(i_2 = 0;i_2 < size1; i_2++){
+            printf("\t array[%d].. %d\n",i_2,array[i_2]);
+    }
+
+
+     for(i_2 = 0;i_2 < size2; i_2++){
+        for (j = 0; j< size3; j++)
+        {
+            printf("\t%d",array2[i_2][j]);
+        }
+        printf("\n");
+    }
+    printf("%zd\n",sizeof(array));
+    printf("%zd\n",sizeof(array2));
     return 0; 
 }
