@@ -1,56 +1,22 @@
 #include <stdio.h>
-#include<stdlib.h>
-int hoge;
-int hoge2;
-static int hoge3;
-
-void func1(void){
-    //静的なアドレスと動的なアドレスを表示
-    int func1_variable;
-    static int local_static_variable;
-
-    printf("func1_variable.. %p\n",(void*)&func1_variable);
-    printf("local_static_variable.. %p\n",(void*)&local_static_variable);
-}
-void func2(void){
-    int func2_variable;
-    printf("func2_variable.. %p\n",(void*)&func2_variable);
+void fanc1(int a, int b){
+    int c,d;
+    //引数のポインタ
+    printf("func1:&a..%p func1:&b..%p\n",(void*)&a,(void*)&b);
+    //関数内のローカル変数のポインタ
+    printf("func1:&c..%p fuc1:&d..%p\n",(void*)&c,(void*)&d);
 }
 int main(void){
-    /*2章の学習を開始*/
-    printf("仮想アドレスについて\n");
-    char buf[256];
-
-    printf("&hoge.. %p\n",(void*)&hoge);
-    //入力の規則
-    fgets(buf,sizeof(buf),stdin);
-    sscanf(buf,"%d",&hoge);
-
-    // for (;;)
-    // {
-    //     printf("hoge.. %d\n",hoge); //hogeのアドレス
-
-    //     //enterを押すたび入力された整数の数と同じ値を増やす
-    //     getchar();
-    //     hoge++;
-    // }
-    printf("アドレスの表示\n");
-    int *p;
-    /*関数へのポインタを表示*/
-    printf("func1..%p\n",(void*)func1);
-    printf("func2..%p\n",(void*)func2);
-    /*文字リテラルへのポインタを表示*/
-    printf("String..%p\n",(void*)"abc");
-    /*グローバル変数のポインタを表示*/
-    printf("hoge2..%p\n",(int*)&hoge2);
-    /*static変数のポインタを表示*/
-    printf("hoge3..%p\n",(int*)&hoge3);
-    /*ローカル関数の表示 */
-    func1();
-    func2();
-
-    /*Mallocで解放した領域のアドレス */
-    p = malloc(sizeof(int));
-    printf("malloc address..%p\n",(int*)p);
+    /*2章5項の学習を開始*/
+    //動的変数
+   int auto test = 5; //動的変数を定義
+   int static Test = 5;
+   printf("%p\n",(void*)&test);
+   printf("%p\n",(void*)&Test);
+   /*関数を使用した動的変数*/
+   int a,b;
+   //maain関数内のローカル変数
+   printf("main:&a..%p main:&b..%p\n",(void*)&a,(void*)&b);
+   fanc1(1,2);
     return 0;
 }
