@@ -1,53 +1,59 @@
 #include <stdio.h>
-#include<stdarg.h>
-#include<assert.h>
-/*printfライクな関数を作成*/
-void tiny_printf(char *format,...){
-    int i;
-    va_list ap;
+/*順列の出力*/
+#define N_MAX (100)//選択できる数の最大値（nの最大値）
+int used_flag[N_MAX + 1];//数字が使用されたらその数字に1のフラグを立てる
+int result[N_MAX];
+int n;
+int r;
 
-    va_start(ap,format);
-    for(i = 0;format[i] != '\0';i++)
-    switch (format[i])
-    {
-    case 
-    's':
-    printf("%s ",va_arg(ap,char*));
-        break;
-    case
-    'd':
-    printf("%d ",va_arg(ap,int));
-        break;
-    default:
-        assert(0);
+/*出力用関数*/
+void print_result(void){
+    for(int i = 0; i < r; i++){
+        printf("%d",result[i]);
     }
-    va_end(ap);
-    putchar('\n');
+    printf("\n");
 }
+void permutation(int nth){
+    int i;
+    if(r == nth){
+        print_result();
+        return;
+    }
+    for (i = 1; i < n; i++)
+    {
+        if(used_flag[i] == 0){
+            result[nth] = i;
+            used_flag[i] = 1;
+            permutation(nth + 1);
+            used_flag[i] = 0;
 
-static void print_addrs_in_func(int a, int b) {
-    int c, d;
-    // 引数のアドレス
-    printf("func: &a=%p &b=%p\n", (void*)&a, (void*)&b);
-    // 関数内ローカル変数のアドレス
-    printf("func: &c=%p &d=%p\n", (void*)&c, (void*)&d);
+        }
+    }
+    
 }
 int main(void) {
-    // 動的（自動）変数と静的変数
-    int test = 5;               // automatic storage
-    static int test_static = 5; // static storage duration
-
-    int a, b;
-
-    printf("&test=%p\n", (void*)&test);
-    printf("&test_static=%p\n", (void*)&test_static);
-
-    // main関数内のローカル変数
-    printf("main: &a=%p &b=%p\n", (void*)&a, (void*)&b);
-
-    print_addrs_in_func(1, 2);
-
-    //可変長引数
-    tiny_printf("sdd","result..",5,6);
+    printf("順列を生成します。\n");
+    printf("nの値を入力してください\n");
+    if(scanf("%d",&n) != 1){
+        fprintf(stderr,"無効な数値です\n");
+        return 1; //異常終了フラグ
+    }
+    printf("rの値を入力してください\n");
+    if (scanf("%d",&r) != 1){
+        fprintf(stderr,("無効な数値です\n"));
+        return 1;
+    }
+    //入力値の妥当性チェック
+    if (n <= 0 || r <= 0 || n > N_MAX || r > n)
+    {
+        fprintf(stderr,"入力値が正しくありません\n");
+        return 0;
+    }
+    //flagの初期化
+    for(int i = 0;i <= n; i++){
+        used_flag[i] = 0;
+    }
+    
+    permutation(0);
     return 0;
 }
