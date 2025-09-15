@@ -1,4 +1,29 @@
 #include <stdio.h>
+#include<stdarg.h>
+#include<assert.h>
+/*printfライクな関数を作成*/
+void tiny_printf(char *format,...){
+    int i;
+    va_list ap;
+
+    va_start(ap,format);
+    for(i = 0;format[i] != '\0';i++)
+    switch (format[i])
+    {
+    case 
+    's':
+    printf("%s ",va_arg(ap,char*));
+        break;
+    case
+    'd':
+    printf("%d ",va_arg(ap,int));
+        break;
+    default:
+        assert(0);
+    }
+    va_end(ap);
+    putchar('\n');
+}
 
 static void print_addrs_in_func(int a, int b) {
     int c, d;
@@ -21,5 +46,8 @@ int main(void) {
     printf("main: &a=%p &b=%p\n", (void*)&a, (void*)&b);
 
     print_addrs_in_func(1, 2);
+
+    //可変長引数
+    tiny_printf("sdd","result..",5,6);
     return 0;
 }
