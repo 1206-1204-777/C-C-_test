@@ -83,7 +83,7 @@ int main(void){
     printf("\nポインタの移動\n");
 
     //ポインタの移動
-   /* int hoge_2;
+    /* int hoge_2;
     int *hoge_p_2;
     hoge_p_2 = &hoge_2;
     printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
