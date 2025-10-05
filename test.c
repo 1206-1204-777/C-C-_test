@@ -15,11 +15,27 @@ int main(void){
 
   /*配列について*/
   int hoge[2][3];
-  printf("hoge[2]..%i\n",(*hoge)[3]);
+
   printf("hoge[2]..%i\n",(*hoge)[2]);
   /*配列の計算 */
   printf("size.. %d\n",(int)sizeof(int(*[5])(double)));
 
-  
+  /*基本型のバイト数*/
+  printf("char..%d\n",(int)sizeof(char));
+  printf("int..%d\n",(int)sizeof(int));
+  printf("float..%d\n",(int)sizeof(float));
+  printf("double..%d\n",(int)sizeof(double));
+
+    //ポインタのテスト
+  int* p1 = NULL;//int型へのポインタ変数
+  int i;
+  i= 10;
+  //iのアドレスをpに代入
+  p1 = &i;
+
+  //pの値
+  printf("p = %p\n",p1);
+  //iの値
+  printf("&i = %p\n",&i);
   return 0; 
 }
