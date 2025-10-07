@@ -37,5 +37,11 @@ int main(void){
   printf("p = %p\n",p1);
   //iの値
   printf("&i = %p\n",&i);
+
+  /*配列型*/
+  int array[5] = {10, 20, 30, 40, 50}; 
+  printf("*array = %d\n", *array); //　10
+  printf("array[3] = %d\n", array[3]); // 40 
+  printf("*(array + 3) = %d\n", *(array + 3)); //　3つ目の要素に対してポインタ経由でアクセス
   return 0; 
 }
