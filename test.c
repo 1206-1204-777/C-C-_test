@@ -6,9 +6,9 @@ int main(void){
    //x = 20; 変更できないためコンパイルエラーになる(エラーメッセージ：式は変更可能な左辺値である必要があります)
    int y = x + 10; // xの値を使った新しい変数"y"を作成。constは"読み取り専用"なだけなので中身の値は使える
    printf("y..%d\n",y); //結果：y..20
-   /*constを使用したポインタ変数*/
+   /*引数にconstを使用した関数*/
    char *test_src(char *dest,const char *src){ //char型へのポインタを返す関数testを宣言
-    src = NULL; //constで修飾したポインタ型変数"*src"に値を再代入するが、問題なく実行・コンパイルされる
+    src = NULL; //constで修飾したポインタ型変数"src"に値を再代入するが、問題なく実行・コンパイルされる
    //*src = 'a'; //この場合は"変数aの参照先を変えることになるためコンパイルエラーになる" エラーメッセージ：assignment of read-only location ‘*src’
    }
    //変数そのものを"読み出し専用"にする場合
@@ -18,6 +18,6 @@ int main(void){
    }
    //変数と変数に格納された値の両方をconstにしたい場合
    char *test_src3(const char * const src);
-   
+
     return 0; 
 }
