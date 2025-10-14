@@ -9,7 +9,15 @@ int main(void){
    /*constを使用したポインタ変数*/
    char *test_src(char *dest,const char *src){ //char型へのポインタを返す関数testを宣言
     src = NULL; //constで修飾したポインタ型変数"*src"に値を再代入するが、問題なく実行・コンパイルされる
-   
+   //*src = 'a'; //この場合は"変数aの参照先を変えることになるためコンパイルエラーになる" エラーメッセージ：assignment of read-only location ‘*src’
    }
+   //変数そのものを"読み出し専用"にする場合
+   char *test_src2(char *dest, char * const src){
+    //src = NULL; //変数そのものが読み出し専用なので、再代入ができずコンパイルエラーになる エラーメッセージ：assignment of read-only parameter ‘src’
+    // src = 'a'; //変数そのものがconstなため、中の値を変更することもできない エラーメッセージ：assignment of read-only parameter ‘src’
+   }
+   //変数と変数に格納された値の両方をconstにしたい場合
+   char *test_src3(const char * const src);
+   
     return 0; 
 }
