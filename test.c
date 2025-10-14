@@ -14,7 +14,7 @@ int main(void){
    //変数そのものを"読み出し専用"にする場合
    char *test_src2(char *dest, char * const src){
     //src = NULL; //変数そのものが読み出し専用なので、再代入ができずコンパイルエラーになる エラーメッセージ：assignment of read-only parameter ‘src’
-    *src = 'a'; //変数そのものがconstなため、指す先(値)を変更することもできないが、 変数に再代入は可能
+    *src = 'a'; //新しい値をポインタ変数が指す先への再代入は可能
    }
    //変数と変数に格納された値の両方をconstにしたい場合
    char *test_src3(const char * const src);
