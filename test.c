@@ -19,5 +19,9 @@ int main(void){
    //変数と変数に格納された値の両方をconstにしたい場合
    char *test_src3(const char * const src);
 
+   /*typedef*/
+   typedef char String; //typedefを使ってchar型にStringという別名をつける
+   String X[6] = "hello"; //Stringの名前を使って変数Xに文字列(ダブルクオーテーションとhelloの文字)を格納
+   printf("x..%s\n",X); //結果x..helloと出力される
     return 0; 
 }
