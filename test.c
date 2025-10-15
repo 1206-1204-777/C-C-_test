@@ -38,5 +38,13 @@ int main(void){
    FuncPtr fptr = add; //関数ポインタfptrに関数addのアドレスを代入
    int result = fptr(5,3); //fptrを使って関数addを呼び出し、結果をresultに格納
    printf("result..%d\n",result); //結果：result..8と出力される
+   /*typedefによる保守性の向上の例*/
+    typedef struct {
+     int id;
+     char name[50];
+     float salary;
+    }Employee; //Employeeという名前の構造体を定義
+    Employee emp1 = {1, "Alice", 50000.0}; //Employee型の変数emp1を宣言し、各メンバに初期値を代入
+    printf("Employee..id:%d name:%s salary:%.2f\n",emp1.id,emp1.name,emp1.salary); //結果：Employee..id:1 name:Alice salary:50000.00と出力される    
     return 0; 
 }
