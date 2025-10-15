@@ -21,7 +21,7 @@ int main(void){
 
    /*typedef*/
    typedef char String; //typedefを使ってchar型にStringという別名をつける
-   String X[6] = "hello"; //Stringの名前を使って配列Xに文字列(ダブルクオーテーションとhelloの文字)を格納
+   String X[6] = "hello"; //Stringの別名を使って配列Xに文字列を格納
    printf("x..%s\n",X); //結果x..helloと出力される
     return 0; 
 }
