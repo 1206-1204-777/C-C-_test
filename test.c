@@ -1,163 +1,59 @@
 #include <stdio.h>
-#include<ctype.h>
-#include <stdlib.h>
-void get_xy(double *x_p, double *y_p){
-    printf("x_p.. %p,y_p..%p\n",(void*)x_p,(void*)y_p);
-    printf("&x_p.. %p,&y_p..%p\n",(void*)&x_p,(void*)&y_p);//アドレスの表示
-
-    //引数で渡されたアドレスに値を格納
-    *x_p = 1.0;
-    *y_p = 2.0;
-    }
-
-int get_word(char *buf,int buf_size,FILE *fp){
-    int len;
-    int ch;
-    /*空白の読み飛ばし */
-    while ((ch = getc(fp)) != EOF && !isalnum(ch));
-
-    if(ch ==EOF)
-    return EOF;
-
-    len = 0;
-    do{
-        buf[len] = ch;
-        len++;
-        if(len >= buf_size){
-            printf("error!\n");
-            exit(1);
-        }
-    }while ((ch = getc(fp)) != EOF && !isalnum(ch));
-    buf[len] = '\0';
-    return len;
-}
+   /*関数の仮引数宣言*/
+   //関数の引数に配列を渡す場合
+   void func(int a[]){ //配列の先頭アドレスを受け取る
+      printf("a = %p\n", (void*)a); //ポインタを介して値にアクセス
+   }
+    //void func(int a[]); //これも同じ意味
+   //2次元配列を渡す場合
+  int func2(int a[][3]){ //2次元配列の先頭アドレスを受け取る  
+   for(int i=0;i<2;i++){
+      for(int j=0;j<3;j++){
+         printf("a[%d][%d]=%d\n",i,j,a[i][j]);
+      }
+   }
+  return a[0][1];
+   }
+   //C99以降の2次元配列を渡す場合
+   void func3(int size1,int size2,int a[size1][size2]){ 
+      int i,j,result=0;
+      for(i=0;i<size1;i++){
+         for(j=0;j<size2;j++){
+            result += a[i][j];
+   }
+}      
+      printf("要素の合計値=%d\n",result);
+   }
+   int func4(int a){
+      for (int i = 0; i < 10; i++)
+      {
+         a += 1;
+         printf("a.. %d,\n",a);
+      }
+      return a;
+   }
 int main(void){
-    printf("_Bool..%d\n",(int)sizeof(_Bool));
-    printf("char..%d\n",(int)sizeof(char));
-    printf("short..%d\n",(int)sizeof(short));
-    printf("int..%d\n",(int)sizeof(int));
-    printf("long..%d\n",(int)sizeof(long));
-    printf("long long..%d\n",(int)sizeof(long long));
-    printf("float..%d\n",(int)sizeof(float));
-    printf("double..%d\n",(int)sizeof(double));
-
-    printf("ポインタテスト\n");
-
-    //ポインタのテスト
-    int* p = NULL;//int型へのポインタ変数
-    int i;
-    i= 10;
-    //iのアドレスをpに代入
-    p = &i;
-
-    //pの値
-    printf("p = %p\n",p);
-    //iの値
-    printf("&i = %p\n",&i);
-
-    printf("ポインタテスト（追加）\n\n");
-
-    int hoge = 5;
-    int piyo = 10;
-    int *hoge_p; //ポインタ変数
-
-    //変数ごとのアドレス
-    printf("&hoge.. %p\n",(void*)&hoge);
-    printf("&piyo.. %p\n",(void*)&piyo);
-    printf("&hoge_p.. %p\n",(void*)&hoge_p);
-
-    //ポインタ変数への代入
-    hoge_p = &hoge;
-    printf("&hoge_p.. %p\n",(void*)&hoge_p);
-
-    //hoge_pを経由してhogeの値を表示
-    printf("&hoge_p.. %d\n",*hoge_p);
-    
-    *hoge_p = 10;
-    printf("&hoge.. %d\n",hoge);
-    printf("&hoge.. %p\n",(void*)&hoge);
-
-    int a[10];
-    printf("a..%i\n",a[1]);
-
-    printf("\nポインタの移動\n");
-
-    //ポインタの移動
-    /* int hoge_2;
-    int *hoge_p_2;
-    hoge_p_2 = &hoge_2;
-    printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
-
-    hoge_p_2++;
-    printf("hoge_p_2.. %p\n",(void*)hoge_p_2);
-    printf("hoge_p_2.. %p\n",(void*)hoge_p_2 + 3);
-
-    printf("\n関数からポインタの受け渡し\n");
-
-    int *p_2;
-    double x;
-    double y;
- 
-    printf("&x..%p,&y..%p\n",(void*)&x,(void*)&y);
-    get_xy(&x,&y);
-    printf("x..%f,y..%f\n",x,y);
-
-        printf("\n配列\n");
-        int array[5];
-        // arrayに値を入れる
-        for ( i = 0; i < 5; i++)
-        {
-            array[i] = i;
-        }
-
-        for ( i = 0; i < 5; i++)
-        {
-            printf("%d\n",array[i]);
-        }
-        for (i = 0; i < 5; i++)
-        {
-            printf("%p\n",(void*)&array[i]);
-        }
-    char buf[1];           
-    while ((get_word(buf,256,stdin) != EOF))
-    {
-        printf("<<%s>>\n",buf);
-        }
-    ;*/
-
-    //可変長配列
-    int size1,size2,size3;
-    printf("整数を3つ入力してください\n");
-    scanf("%d %d %d",&size1,&size2,&size3);
-    int array[size1];
-    int array2[size2][size3];
-    //配列に値を格納
-    int i_2;
-    for(i_2 = 0;i_2 < size1; i_2++){
-        array[i_2] = i_2;
-    }
-    int j;
-     for(i_2 = 0;i_2 < size2; i_2++){
-        for (int j = 0; j< size3; j++)
-        {
-            array2[i_2][j] = i_2 *size3 + j;
-        }
-        
-    }
-    //格納された値を表示
-        for(i_2 = 0;i_2 < size1; i_2++){
-            printf("array[%d].. %d\n",i_2,array[i_2]);
-    }
-
-
-     for(i_2 = 0;i_2 < size2; i_2++){
-        for (j = 0; j< size3; j++)
-        {
-            printf("\t%d",array2[i_2][j]);
-        }
-        printf("\n");
-    }
-    printf("%zd\n",sizeof(array));
-    printf("%zd\n",sizeof(array2));
+   int A = 10;
+   int *a = &A; //配列の宣言と初期化
+   func((int *)&A); //配列の先頭アドレスを渡す
+   int num [2][3] = { {1,5,5}, {3,8,78} }; //2次元配列の宣言
+   func2(num); //2次元配列の先頭アドレスを渡す
+   int size1 = 2; //行数
+   int size2 = 4; //列数
+   int num2[2][4] = { {10,20,34,14}, {57,64,7,8} }; //2次元配列の宣言
+   func3(size1,size2,num2); //可変長配列の先頭アドレスを渡す
+   /*文字リテラル*/
+   char *str = "test";
+   char str2[] = "test2";  
+   printf("str..%s\n",str);
+   printf("str2..%s\n",str2);//配列として扱える
+   /*関数へのポインタ*/
+   printf("main %p\n",&main); //main関数のアドレス
+   int (*p_func[2])(int); // 関数ポインタの宣言
+   p_func[1] = (void*)func;
+   printf("p_func.. %p\n",p_func);
+   int x = func4(5);
+   /*関数へのポインタを構造体に格納*/
+   
     return 0; 
 }
