@@ -25,5 +25,23 @@ int main(void){
    int array[] = {2,2,3,4,5,6};
    func2(array,sizeof(array) / sizeof(array[0]));
    printf("%lu\n",sizeof(array)/sizeof(array[0]));//配列のサイズ
+
+   //mallocを使用した動的配列
+   int   *variable_array = NULL;
+   int   size = 0;
+   char   buf[256];
+   int   i;
+   fgets(buf,256,stdin);
+   sscanf(buf,"%lu",stdin);
+   variable_array = malloc(sizeof(int)*size);
+   for (int i = 0; i < size; i++)
+   {
+      variable_array[i] = i;
+   }
+   for (int i = 0; i < size; i++)
+   {
+      printf("variable_array[%d]..%d\n",i,variable_array[i]);
+   }
+   
    return 0; 
 }
